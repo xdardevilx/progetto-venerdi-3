@@ -9,6 +9,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -66,7 +68,19 @@ public class Application {
             System.out.println("errore nella ricerca" + " " + e.getMessage());
         }
 
-//        --------------EFFETTUO LA RICERCA TRAMITE ISBN MAGAZINE--------------
+//        --------------EFFETTUO LA RICERCA TRAMITE ANNO MAGAZINE--------------
+
+        try {
+            List<Book> books = dao.findBooksByPublicationYear(2010);
+            for (Book book : books) {
+                System.out.println(book.toString());
+            }
+        } catch (Exception e) {
+            System.out.println("errore nella ricerca" + " " + e.getMessage());
+        }
+
+
+// -----------------EFFETTUO LA RICERCA TRAMITE ANNO BOOK--------------
 
         try {
             Book book = dao.findBookByISBN("9790960711504");
@@ -75,7 +89,6 @@ public class Application {
             System.out.println("errore nella ricerca" + " " + e.getMessage());
         }
 
-        
 //        try {
 //        dao.deleteByISBN("9781687582447");
 //            System.out.println("eliminazione tramite ISBN avvenuta con successo");
